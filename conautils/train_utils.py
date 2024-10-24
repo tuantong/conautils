@@ -13,7 +13,7 @@ from forecasting.configs.logging_config import logger
 from forecasting.data.util import find_leading_zeros
 from forecasting.util import TqdmToLoguru
 from forecasting.utils.common_utils import save_dict_to_json
-from utils.config_utils import (
+from conautils.config_utils import (
     determine_model_configs,
     parse_data_configs,
     parse_model_configs,
