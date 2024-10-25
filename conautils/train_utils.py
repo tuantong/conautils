@@ -122,7 +122,7 @@ def fit_and_predict_chunks(
         )
     else:
         pred_df = _sequential_fit_and_predict(
-            id_data_configs_list, log_interval, id_col, target_col, date_col
+            id_data_configs_list, log_interval, id_col, target_col, date_col, df_events_all, # custom-event
         )
 
     logger.info(f"pred_df shape: {pred_df.shape}, {pred_df[id_col].unique().shape}")
