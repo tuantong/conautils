@@ -301,5 +301,5 @@ def fit_model_with_events(df, model_configs, freq, minimal, progress, use_events
             df_events_train, df_events_untrain = decompose_df_events(df, df_events)  # custom-event
             model.add_events(df_events_train["event"].unique().tolist())  # custom-event
             df_w_events = model.create_df_with_events(df, df_events_train) # custom-event
-    model.fit(df_w_events, freq=freq, num_workers=0, minimal=minimal, progress=progress, checkpointing=False) # custom-event
+    model.fit(df_w_events, freq=freq, num_workers=0, minimal=minimal, progress=progress) # custom-event
     return model, df_w_events, df_events_train, df_events_untrain # custom-event
