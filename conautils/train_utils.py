@@ -25,7 +25,6 @@ from conautils.predictions_utils import combine_forecasts
 ######## custom-event  ##########
 from forecasting import PROJECT_DEBUG_PATH
 
-
 def decompose_df_events(df_id, df_events):
     df_events['ds'] = pd.to_datetime(df_events['ds'])
     cut_off_date = df_id['ds'].iloc[-1]
@@ -299,7 +298,8 @@ def fit_model_with_events(df, model_configs, freq, minimal, progress, use_events
         df_events = df_events_all[df_events_all['ID'] == df['ID'].iloc[0]]  # custom-event
         if df_events is not None and len(df_events) > 0: # custom-event
             df_events_train, df_events_untrain = decompose_df_events(df, df_events)  # custom-event
-            model.add_events(df_events_train["event"].unique().tolist())  # custom-event
-            df_w_events = model.create_df_with_events(df, df_events_train) # custom-event
+            if df_events_train is not None and len(df_events_train) > 0:
+                model.add_events(df_events_train["event"].unique().tolist())  # custom-event
+                df_w_events = model.create_df_with_events(df, df_events_train) # custom-event
     model.fit(df_w_events, freq=freq, num_workers=0, minimal=minimal, progress=progress, learning_rate=0.001) # custom-event
     return model, df_w_events, df_events_train, df_events_untrain # custom-event
